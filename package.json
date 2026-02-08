@@ -1,0 +1,17 @@
+{
+  "name": "popchoice",
+  "version": "1.0.0",
+  "description": "This is a AI movies app which recommend movies based on embeddings data",
+  "license": "ISC",
+  "author": "Henna Singh",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.94.1",
+    "openai": "^6.17.0"
+  }
+}
