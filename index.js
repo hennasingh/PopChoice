@@ -12,7 +12,11 @@ form.addEventListener("submit", async (event) => {
     const combinedText = pairs.join("\n");
     console.log(combinedText);
 
-    await fetchMovies(combinedText);
+    const movieResponse = await fetchMovies(combinedText);
+    if (!movieResponse) return;
+
+    sessionStorage.setItem("popchoice_movie", JSON.stringify(movieResponse));
+    window.location.href = "movie.html";
 });
 
 function getFormPairs(formEl) {
@@ -41,8 +45,14 @@ async function fetchMovies(input) {
             body: JSON.stringify(input)
         })
 
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(errorText || "Request failed");
+        }
+
         const data = await response.json();
         console.log(data);
+        return data;
     }
     catch (error) {
         console.error(error.message);
